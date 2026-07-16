@@ -1,0 +1,152 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+  }
+
+  .employees-page {
+    width: 90%;
+    margin: 40px auto;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .page-header h1 {
+    color: #1f2937;
+  }
+
+  .add-button {
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  .search-box {
+    background: white;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 8px;
+  }
+
+  .search-box input {
+    padding: 10px;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .search-box input[type="submit"] {
+    width: auto;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+
+  th {
+    background: #1f2937;
+    color: white;
+    padding: 14px;
+    text-align: left;
+  }
+
+  td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .action-link {
+    margin-right: 10px;
+  }
+</style>
+
+<div class="employees-page">
+
+  <div class="page-header">
+
+    <h1>Employees</h1>
+
+    <%= link_to "＋ Add Employee",
+        new_employee_path,
+        class: "add-button" %>
+
+  </div>
+
+
+  <div class="search-box">
+
+    <%= form_with url: employees_path,
+        method: :get,
+        local: true do |form| %>
+
+      <%= form.text_field :search,
+          value: params[:search],
+          placeholder: "Search by name, employee ID, department or email" %>
+
+      <%= form.submit "Search" %>
+
+    <% end %>
+
+  </div>
+
+
+  <table>
+
+    <tr>
+      <th>Name</th>
+      <th>Employee ID</th>
+      <th>Department</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+
+
+    <% @employees.each do |employee| %>
+
+      <tr>
+
+        <td><%= employee.name %></td>
+
+        <td><%= employee.employee_id %></td>
+
+        <td><%= employee.department %></td>
+
+        <td><%= employee.email %></td>
+
+        <td>
+
+          <%= link_to "Edit",
+              edit_employee_path(employee),
+              class: "action-link" %>
+
+          <%= link_to "Delete",
+              employee_path(employee),
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+
+        </td>
+
+      </tr>
+
+    <% end %>
+
+  </table>
+
+  <br>
+
+  <%= link_to "← Back to Dashboard", root_path %>
+
+</div>

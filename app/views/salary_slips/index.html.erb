@@ -1,0 +1,150 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+  }
+
+  .salary-page {
+    width: 95%;
+    margin: 40px auto;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .page-header h1 {
+    color: #1f2937;
+  }
+
+  .add-button {
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 25px;
+  }
+
+  th {
+    background: #1f2937;
+    color: white;
+    padding: 14px;
+    text-align: left;
+  }
+
+  td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background: #f8fafc;
+  }
+
+  .action-link {
+    margin-right: 10px;
+  }
+</style>
+
+
+<div class="salary-page">
+
+  <div class="page-header">
+
+    <h1>Salary Slips</h1>
+
+    <%= link_to "＋ Create Salary Slip",
+        new_salary_slip_path,
+        class: "add-button" %>
+
+  </div>
+
+
+  <table>
+
+    <tr>
+      <th>Employee ID</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Basic Salary</th>
+      <th>Allowances</th>
+      <th>Deductions</th>
+      <th>Net Salary</th>
+      <th>Actions</th>
+    </tr>
+
+
+    <% @salary_slips.each do |salary_slip| %>
+
+      <tr>
+
+        <td>
+          <%= salary_slip.employee.employee_id %>
+        </td>
+
+        <td>
+          <%= salary_slip.month %>
+        </td>
+
+        <td>
+          <%= salary_slip.year %>
+        </td>
+
+        <td>
+          ₹ <%= salary_slip.basic_salary %>
+        </td>
+
+        <td>
+          ₹ <%= salary_slip.allowances %>
+        </td>
+
+        <td>
+          ₹ <%= salary_slip.deductions %>
+        </td>
+
+        <td>
+          <strong>
+            ₹ <%= salary_slip.net_salary %>
+          </strong>
+        </td>
+
+        <td>
+
+          <%= link_to "View",
+              salary_slip_path(salary_slip),
+              class: "action-link" %>
+
+          <%= link_to "Edit",
+              edit_salary_slip_path(salary_slip),
+              class: "action-link" %>
+
+          <%= link_to "Delete",
+              salary_slip_path(salary_slip),
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+
+        </td>
+
+      </tr>
+
+    <% end %>
+
+  </table>
+
+
+  <br>
+
+  <%= link_to "← Back to Dashboard", root_path %>
+
+</div>

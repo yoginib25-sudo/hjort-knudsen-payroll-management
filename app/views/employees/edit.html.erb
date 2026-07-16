@@ -1,0 +1,33 @@
+<h1>Edit Employee</h1>
+
+<%= form_with model: @employee do |form| %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :employee_id %><br>
+    <%= form.text_field :employee_id %>
+  </p>
+
+  <p>
+    <%= form.label :department %><br>
+    <%= form.text_field :department %>
+  </p>
+
+  <p>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </p>
+
+  <p>
+    <%= form.submit "Update Employee" %>
+  </p>
+
+<% end %>
+
+<br>
+
+<%= link_to "Back to Employees", employees_path %>

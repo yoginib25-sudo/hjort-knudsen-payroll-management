@@ -1,0 +1,292 @@
+<style>
+  body {
+    background: #f4f6f9;
+    font-family: Arial, sans-serif;
+  }
+
+  .payslip {
+    width: 850px;
+    margin: 30px auto;
+    background: white;
+    padding: 35px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  }
+
+  .company-header {
+    text-align: center;
+    border-bottom: 3px solid #1f2937;
+    padding-bottom: 20px;
+  }
+
+  .company-header h1 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 28px;
+  }
+
+  .company-header p {
+    margin: 8px 0;
+    color: #555;
+  }
+
+  .payslip-title {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .payslip-title h2 {
+    display: inline-block;
+    background: #1f2937;
+    color: white;
+    padding: 10px 35px;
+    margin: 0;
+  }
+
+  .employee-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 18px;
+    margin-bottom: 25px;
+  }
+
+  .salary-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .salary-box {
+    border: 1px solid #ddd;
+  }
+
+  .salary-box h3 {
+    background: #1f2937;
+    color: white;
+    margin: 0;
+    padding: 12px;
+  }
+
+  .salary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .total-row {
+    font-weight: bold;
+    background: #f3f4f6;
+  }
+
+  .net-salary {
+    margin-top: 25px;
+    background: #e5e7eb;
+    padding: 18px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .footer {
+    margin-top: 35px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+  }
+
+  .print-button {
+    text-align: center;
+    margin: 20px;
+  }
+
+  .print-button button {
+    padding: 12px 25px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  @media print {
+    .print-button {
+      display: none;
+    }
+
+    body {
+      background: white;
+    }
+
+    .payslip {
+      box-shadow: none;
+      margin: 0;
+    }
+  }
+</style>
+
+
+<div class="payslip">
+
+  <div class="company-header">
+
+    <h1>Hjort Knudsen Pvt. Ltd.</h1>
+
+    <p>Employee Salary Management System</p>
+
+  </div>
+
+
+  <div class="payslip-title">
+
+    <h2>SALARY SLIP</h2>
+
+  </div>
+
+
+  <div class="employee-details">
+
+    <div>
+      <strong>Employee ID:</strong>
+      <%= @salary_slip.employee.employee_id %>
+    </div>
+
+    <div>
+      <strong>Employee Name:</strong>
+      <%= @salary_slip.employee.name %>
+    </div>
+
+    <div>
+      <strong>Department:</strong>
+      <%= @salary_slip.employee.department %>
+    </div>
+
+    <div>
+      <strong>Email:</strong>
+      <%= @salary_slip.employee.email %>
+    </div>
+
+    <div>
+      <strong>Month:</strong>
+      <%= @salary_slip.month %>
+    </div>
+
+    <div>
+      <strong>Year:</strong>
+      <%= @salary_slip.year %>
+    </div>
+
+  </div>
+
+
+  <div class="salary-section">
+
+
+    <div class="salary-box">
+
+      <h3>Earnings</h3>
+
+      <div class="salary-row">
+        <span>Basic Salary</span>
+        <span>₹ <%= @salary_slip.basic_salary %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>HRA</span>
+        <span>₹ <%= @salary_slip.hra %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Transport Allowance</span>
+        <span>₹ <%= @salary_slip.transport_allowance %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Medical Allowance</span>
+        <span>₹ <%= @salary_slip.medical_allowance %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Special Allowance</span>
+        <span>₹ <%= @salary_slip.special_allowance %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Other Allowances</span>
+        <span>₹ <%= @salary_slip.other_allowances %></span>
+      </div>
+
+      <div class="salary-row total-row">
+        <span>Gross Salary</span>
+        <span>₹ <%= @salary_slip.gross_salary %></span>
+      </div>
+
+    </div>
+
+
+    <div class="salary-box">
+
+      <h3>Deductions</h3>
+
+      <div class="salary-row">
+        <span>Provident Fund (PF)</span>
+        <span>₹ <%= @salary_slip.pf %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Professional Tax</span>
+        <span>₹ <%= @salary_slip.professional_tax %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>TDS</span>
+        <span>₹ <%= @salary_slip.tds %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Loan Deduction</span>
+        <span>₹ <%= @salary_slip.loan_deduction %></span>
+      </div>
+
+      <div class="salary-row">
+        <span>Other Deductions</span>
+        <span>₹ <%= @salary_slip.other_deductions %></span>
+      </div>
+
+      <div class="salary-row total-row">
+        <span>Total Deductions</span>
+        <span>₹ <%= @salary_slip.deductions %></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="net-salary">
+
+    Net Salary:
+    ₹ <%= @salary_slip.net_salary %>
+
+  </div>
+
+
+  <div class="footer">
+
+    <p>This is a computer-generated salary slip.</p>
+
+    <p>Hjort Knudsen Pvt. Ltd.</p>
+
+  </div>
+
+</div>
+
+
+<div class="print-button">
+
+  <button onclick="window.print()">
+    Print / Save as PDF
+  </button>
+
+</div>

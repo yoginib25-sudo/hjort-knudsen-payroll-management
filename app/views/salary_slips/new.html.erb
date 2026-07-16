@@ -1,0 +1,224 @@
+<h1>Create Salary Slip</h1>
+
+<%= form_with model: @salary_slip do |form| %>
+
+  <div>
+    <%= form.label :employee_id, "Employee ID" %><br>
+    <%= form.collection_select :employee_id,
+        Employee.all,
+        :id,
+        :employee_id,
+        prompt: "Select Employee" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :month %><br>
+    <%= form.text_field :month %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :year %><br>
+    <%= form.number_field :year %>
+  </div>
+
+  <hr>
+
+  <h2>Earnings</h2>
+
+  <div>
+    <%= form.label :basic_salary, "Basic Salary" %><br>
+    <%= form.number_field :basic_salary,
+        step: 0.01,
+        id: "basic_salary" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :hra, "HRA" %><br>
+    <%= form.number_field :hra,
+        step: 0.01,
+        id: "hra" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :transport_allowance, "Transport Allowance" %><br>
+    <%= form.number_field :transport_allowance,
+        step: 0.01,
+        id: "transport_allowance" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :medical_allowance, "Medical Allowance" %><br>
+    <%= form.number_field :medical_allowance,
+        step: 0.01,
+        id: "medical_allowance" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :special_allowance, "Special Allowance" %><br>
+    <%= form.number_field :special_allowance,
+        step: 0.01,
+        id: "special_allowance" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :other_allowances, "Other Allowances" %><br>
+    <%= form.number_field :other_allowances,
+        step: 0.01,
+        id: "other_allowances" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :gross_salary, "Gross Salary" %><br>
+    <%= form.number_field :gross_salary,
+        step: 0.01,
+        readonly: true,
+        id: "gross_salary" %>
+  </div>
+
+  <hr>
+
+  <h2>Deductions</h2>
+
+  <div>
+    <%= form.label :pf, "Provident Fund (PF)" %><br>
+    <%= form.number_field :pf,
+        step: 0.01,
+        id: "pf" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :professional_tax, "Professional Tax (PT)" %><br>
+    <%= form.number_field :professional_tax,
+        step: 0.01,
+        id: "professional_tax" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :tds, "TDS" %><br>
+    <%= form.number_field :tds,
+        step: 0.01,
+        id: "tds" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :loan_deduction, "Loan Deduction" %><br>
+    <%= form.number_field :loan_deduction,
+        step: 0.01,
+        id: "loan_deduction" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :other_deductions, "Other Deductions" %><br>
+    <%= form.number_field :other_deductions,
+        step: 0.01,
+        id: "other_deductions" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :deductions, "Total Deductions" %><br>
+    <%= form.number_field :deductions,
+        step: 0.01,
+        readonly: true,
+        id: "deductions" %>
+  </div>
+
+  <hr>
+
+  <h2>Final Salary</h2>
+
+  <div>
+    <%= form.label :net_salary, "Net Salary" %><br>
+    <%= form.number_field :net_salary,
+        step: 0.01,
+        readonly: true,
+        id: "net_salary" %>
+  </div>
+
+  <br>
+
+  <%= form.submit "Create Salary Slip" %>
+
+<% end %>
+
+
+<script>
+
+  function calculateSalary() {
+
+    let basic = parseFloat(document.getElementById("basic_salary").value) || 0;
+    let hra = parseFloat(document.getElementById("hra").value) || 0;
+    let transport = parseFloat(document.getElementById("transport_allowance").value) || 0;
+    let medical = parseFloat(document.getElementById("medical_allowance").value) || 0;
+    let special = parseFloat(document.getElementById("special_allowance").value) || 0;
+    let otherAllowances = parseFloat(document.getElementById("other_allowances").value) || 0;
+
+    let pf = parseFloat(document.getElementById("pf").value) || 0;
+    let professionalTax = parseFloat(document.getElementById("professional_tax").value) || 0;
+    let tds = parseFloat(document.getElementById("tds").value) || 0;
+    let loan = parseFloat(document.getElementById("loan_deduction").value) || 0;
+    let otherDeductions = parseFloat(document.getElementById("other_deductions").value) || 0;
+
+
+    let grossSalary =
+      basic +
+      hra +
+      transport +
+      medical +
+      special +
+      otherAllowances;
+
+
+    let totalDeductions =
+      pf +
+      professionalTax +
+      tds +
+      loan +
+      otherDeductions;
+
+
+    let netSalary =
+      grossSalary - totalDeductions;
+
+
+    document.getElementById("gross_salary").value = grossSalary;
+
+    document.getElementById("deductions").value = totalDeductions;
+
+    document.getElementById("net_salary").value = netSalary;
+
+  }
+
+
+  document.querySelectorAll("input[type='number']").forEach(function(input) {
+
+    input.addEventListener("input", calculateSalary);
+
+  });
+
+</script>
