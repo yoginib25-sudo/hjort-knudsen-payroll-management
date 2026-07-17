@@ -1,178 +1,273 @@
-<h1>Create Salary Slip</h1>
+<style>
+  .salary-form {
+    max-width: 1000px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+  }
 
-<%= form_with model: @salary_slip do |form| %>
+  .salary-form h1 {
+    text-align: center;
+  }
 
-  <div>
-    <%= form.label :employee_id, "Employee ID" %><br>
-    <%= form.collection_select :employee_id,
-        Employee.all,
-        :id,
-        :employee_id,
-        prompt: "Select Employee" %>
-  </div>
+  .salary-form h2 {
+    margin-top: 25px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+  }
 
-  <br>
+  .form-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
 
-  <div>
-    <%= form.label :month %><br>
-    <%= form.text_field :month %>
-  </div>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
 
-  <br>
+  .form-field label {
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
 
-  <div>
-    <%= form.label :year %><br>
-    <%= form.number_field :year %>
-  </div>
+  .form-field input,
+  .form-field select {
+    padding: 9px;
+    font-size: 15px;
+  }
 
-  <hr>
+  .readonly-field {
+    background-color: #f1f1f1;
+  }
 
-  <h2>Earnings</h2>
+  .full-width {
+    grid-column: 1 / -1;
+  }
 
-  <div>
-    <%= form.label :basic_salary, "Basic Salary" %><br>
-    <%= form.number_field :basic_salary,
-        step: 0.01,
-        id: "basic_salary" %>
-  </div>
+  .submit-button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-  <br>
+  @media (max-width: 768px) {
+    .form-section {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 
-  <div>
-    <%= form.label :hra, "HRA (40%)" %><br>
-    <%= form.number_field :hra,
-        step: 0.01,
-        readonly: true,
-        id: "hra" %>
-  </div>
 
-  <br>
+<div class="salary-form">
 
-  <div>
-    <%= form.label :transport_allowance, "Transport Allowance (10%)" %><br>
-    <%= form.number_field :transport_allowance,
-        step: 0.01,
-        readonly: true,
-        id: "transport_allowance" %>
-  </div>
+  <h1>Create Salary Slip</h1>
 
-  <br>
+  <%= form_with model: @salary_slip do |form| %>
 
-  <div>
-    <%= form.label :medical_allowance, "Medical Allowance (5%)" %><br>
-    <%= form.number_field :medical_allowance,
-        step: 0.01,
-        readonly: true,
-        id: "medical_allowance" %>
-  </div>
+    <!-- Employee Details -->
 
-  <br>
+    <h2>Employee Details</h2>
 
-  <div>
-    <%= form.label :special_allowance, "Special Allowance (5%)" %><br>
-    <%= form.number_field :special_allowance,
-        step: 0.01,
-        readonly: true,
-        id: "special_allowance" %>
-  </div>
+    <div class="form-section">
 
-  <br>
+      <div class="form-field">
+        <%= form.label :employee_id, "Employee ID" %>
 
-  <div>
-    <%= form.label :other_allowances, "Other Allowances (5%)" %><br>
-    <%= form.number_field :other_allowances,
-        step: 0.01,
-        readonly: true,
-        id: "other_allowances" %>
-  </div>
+        <%= form.collection_select :employee_id,
+            Employee.all,
+            :id,
+            :employee_id,
+            prompt: "Select Employee" %>
+      </div>
 
-  <br>
+      <div class="form-field">
+        <%= form.label :month %>
+        <%= form.text_field :month %>
+      </div>
 
-  <div>
-    <%= form.label :gross_salary, "Gross Salary" %><br>
-    <%= form.number_field :gross_salary,
-        step: 0.01,
-        readonly: true,
-        id: "gross_salary" %>
-  </div>
+      <div class="form-field">
+        <%= form.label :year %>
+        <%= form.number_field :year %>
+      </div>
 
-  <hr>
+    </div>
 
-  <h2>Deductions</h2>
 
-  <div>
-    <%= form.label :pf, "Provident Fund (12%)" %><br>
-    <%= form.number_field :pf,
-        step: 0.01,
-        readonly: true,
-        id: "pf" %>
-  </div>
+    <!-- Earnings -->
 
-  <br>
+    <h2>Earnings</h2>
 
-  <div>
-    <%= form.label :professional_tax, "Professional Tax" %><br>
-    <%= form.number_field :professional_tax,
-        step: 0.01,
-        readonly: true,
-        id: "professional_tax" %>
-  </div>
+    <div class="form-section">
 
-  <br>
+      <div class="form-field">
+        <%= form.label :basic_salary, "Basic Salary" %>
 
-  <div>
-    <%= form.label :tds, "TDS (5%)" %><br>
-    <%= form.number_field :tds,
-        step: 0.01,
-        readonly: true,
-        id: "tds" %>
-  </div>
+        <%= form.number_field :basic_salary,
+            step: 0.01,
+            id: "basic_salary" %>
+      </div>
 
-  <br>
+      <div class="form-field">
+        <%= form.label :hra, "HRA (40%)" %>
 
-  <div>
-    <%= form.label :loan_deduction, "Loan Deduction" %><br>
-    <%= form.number_field :loan_deduction,
-        step: 0.01,
-        id: "loan_deduction" %>
-  </div>
+        <%= form.number_field :hra,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "hra" %>
+      </div>
 
-  <br>
+      <div class="form-field">
+        <%= form.label :transport_allowance, "Transport Allowance (10%)" %>
 
-  <div>
-    <%= form.label :other_deductions, "Other Deductions" %><br>
-    <%= form.number_field :other_deductions,
-        step: 0.01,
-        id: "other_deductions" %>
-  </div>
+        <%= form.number_field :transport_allowance,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "transport_allowance" %>
+      </div>
 
-  <br>
+      <div class="form-field">
+        <%= form.label :medical_allowance, "Medical Allowance (5%)" %>
 
-  <div>
-    <%= form.label :deductions, "Total Deductions" %><br>
-    <%= form.number_field :deductions,
-        step: 0.01,
-        readonly: true,
-        id: "deductions" %>
-  </div>
+        <%= form.number_field :medical_allowance,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "medical_allowance" %>
+      </div>
 
-  <hr>
+      <div class="form-field">
+        <%= form.label :special_allowance, "Special Allowance (5%)" %>
 
-  <h2>Final Salary</h2>
+        <%= form.number_field :special_allowance,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "special_allowance" %>
+      </div>
 
-  <div>
-    <%= form.label :net_salary, "Net Salary" %><br>
-    <%= form.number_field :net_salary,
-        step: 0.01,
-        readonly: true,
-        id: "net_salary" %>
-  </div>
+      <div class="form-field">
+        <%= form.label :other_allowances, "Other Allowances (5%)" %>
 
-  <br>
+        <%= form.number_field :other_allowances,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "other_allowances" %>
+      </div>
 
-<%= form.submit "Create Salary Slip" %>
+      <div class="form-field full-width">
+        <%= form.label :gross_salary, "Gross Salary" %>
 
-<% end %>
+        <%= form.number_field :gross_salary,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "gross_salary" %>
+      </div>
+
+    </div>
+
+
+    <!-- Deductions -->
+
+    <h2>Deductions</h2>
+
+    <div class="form-section">
+
+      <div class="form-field">
+        <%= form.label :pf, "Provident Fund (12%)" %>
+
+        <%= form.number_field :pf,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "pf" %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :professional_tax, "Professional Tax" %>
+
+        <%= form.number_field :professional_tax,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "professional_tax" %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :tds, "TDS (5%)" %>
+
+        <%= form.number_field :tds,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "tds" %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :loan_deduction, "Loan Deduction" %>
+
+        <%= form.number_field :loan_deduction,
+            step: 0.01,
+            id: "loan_deduction" %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :other_deductions, "Other Deductions" %>
+
+        <%= form.number_field :other_deductions,
+            step: 0.01,
+            id: "other_deductions" %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :deductions, "Total Deductions" %>
+
+        <%= form.number_field :deductions,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "deductions" %>
+      </div>
+
+    </div>
+
+
+    <!-- Final Salary -->
+
+    <h2>Final Salary</h2>
+
+    <div class="form-section">
+
+      <div class="form-field">
+        <%= form.label :net_salary, "Net Salary" %>
+
+        <%= form.number_field :net_salary,
+            step: 0.01,
+            readonly: true,
+            class: "readonly-field",
+            id: "net_salary" %>
+      </div>
+
+    </div>
+
+
+    <%= form.submit "Create Salary Slip",
+        class: "submit-button" %>
+
+  <% end %>
+
+</div>
+
 
 <script>
 
