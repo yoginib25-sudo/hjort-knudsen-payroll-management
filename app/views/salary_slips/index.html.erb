@@ -150,10 +150,8 @@
           class: "delete-button",
           form_class: "delete-form",
           form: {
-          data: {
-            turbo_confirm: "Are you sure you want to delete this salary slip?"
-        }
-    } %>
+            onsubmit: "return confirm('Are you sure you want to delete this salary slip?');"
+        } %>
 
     </td>
 
