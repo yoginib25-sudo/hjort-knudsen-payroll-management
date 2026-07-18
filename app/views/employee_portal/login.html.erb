@@ -1,22 +1,183 @@
+<style>
+
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f9;
+}
+
+
+.login-container {
+
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+}
+
+
+.login-box {
+
+  background:white;
+  width:400px;
+  padding:35px;
+  border-radius:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  text-align:center;
+
+}
+
+
+.login-logo {
+
+  width:100px;
+  height:100px;
+  object-fit:contain;
+  margin-bottom:15px;
+
+}
+
+
+.login-box h1 {
+
+  color:#1f2937;
+  margin-bottom:25px;
+
+}
+
+
+
+.form-group {
+
+  text-align:left;
+  margin-bottom:20px;
+
+}
+
+
+.form-group label {
+
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+  color:#374151;
+
+}
+
+
+
+.form-group input {
+
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:15px;
+
+}
+
+
+
+.login-button {
+
+  width:100%;
+  background:#2563eb;
+  color:white;
+  padding:13px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+
+}
+
+
+.login-button:hover {
+
+  background:#1d4ed8;
+
+}
+
+
+
+.error-message {
+
+color:red;
+font-weight:bold;
+
+}
+
+
+</style>
+
+
+
 <div class="login-container">
-  <div class="login-box">
-    <h1>Employee Login</h1>
 
-    <% if flash[:alert] %>
-      <p class="error-message"><%= flash[:alert] %></p>
-    <% end %>
 
-    <%= form_with url: employee_login_path, method: :post, data: { turbo: false } do |form| %>      <div class="form-group">
-        <%= form.label :employee_id, "Employee ID" %>
-        <%= form.text_field :employee_id, placeholder: "Enter Employee ID" %>
-      </div>
+<div class="login-box">
 
-      <div class="form-group">
-        <%= form.label :password, "Password" %>
-        <%= form.password_field :password, placeholder: "Enter Password" %>
-      </div>
 
-      <%= form.submit "Login", class: "login-button" %>
-    <% end %>
-  </div>
+<%= image_tag "company_logo.png", class:"login-logo" %>
+
+
+<h1>
+Employee Login
+</h1>
+
+
+
+<% if flash[:alert] %>
+
+<p class="error-message">
+<%= flash[:alert] %>
+</p>
+
+<% end %>
+
+
+
+<%= form_with url: employee_login_path,
+              method: :post,
+              data:{turbo:false} do |form| %>
+
+
+
+<div class="form-group">
+
+<%= form.label :employee_id, "Employee ID" %>
+
+<%= form.text_field :employee_id,
+placeholder:"Enter Employee ID" %>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<%= form.label :password, "Password" %>
+
+<%= form.password_field :password,
+placeholder:"Enter Password" %>
+
+</div>
+
+
+
+<%= form.submit "Login",
+class:"login-button" %>
+
+
+
+<% end %>
+
+
+
+</div>
+
+
 </div>
