@@ -394,9 +394,19 @@
 
 <div class="action-buttons">
 
+  <% if session[:employee_id].present? %>
+
   <%= link_to "← Back to Dashboard",
               employee_dashboard_path,
               class: "back-button" %>
+
+<% else %>
+
+  <%= link_to "← Back to Employees",
+              employees_path,
+              class: "back-button" %>
+
+<% end %>
 
 
   <div class="print-button">
