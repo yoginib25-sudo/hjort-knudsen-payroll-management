@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
 
   # =========================
   # Admin Login
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
 
   delete "employee/logout",  to: "employee_portal#logout"
 
+  get   "employee/change_password", to: "employee_passwords#new", as: :change_password
+  patch "employee/change_password", to: "employee_passwords#update"
 
   # =========================
   # Main Dashboard

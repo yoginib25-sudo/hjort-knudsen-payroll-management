@@ -1,0 +1,2 @@
+module EmployeePasswordsHelper
+end

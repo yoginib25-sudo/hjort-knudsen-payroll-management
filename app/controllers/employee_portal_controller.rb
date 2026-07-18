@@ -1,14 +1,24 @@
 class EmployeePortalController < ApplicationController
-  def login
-    if request.post?
-      employee = Employee.find_by(employee_id: params[:employee_id])
 
-      if employee && employee.password == params[:password]
-        session[:employee_id] = employee.id
+  def login
+    return unless request.post?
+
+    employee = Employee.find_by(employee_id: params[:employee_id])
+
+    if employee && employee.password == params[:password]
+
+      session[:employee_id] = employee.id
+
+      if employee.password_changed
         redirect_to employee_dashboard_path
       else
-        flash.now[:alert] = "Invalid Employee ID or Password"
+        redirect_to change_password_path
       end
+
+    else
+
+      flash.now[:alert] = "Invalid Employee ID or Password"
+
     end
   end
 
@@ -27,4 +37,5 @@ class EmployeePortalController < ApplicationController
     reset_session
     redirect_to employee_login_path
   end
+
 end
