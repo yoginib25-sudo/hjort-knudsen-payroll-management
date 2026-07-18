@@ -4,126 +4,58 @@
   box-sizing:border-box;
 }
 
-
 body {
-
   margin:0;
   font-family:Arial,sans-serif;
   background:#f4f6f9;
-
 }
 
 
+.employee-page {
 
-/* MAIN LAYOUT */
-
-
-.dashboard-container {
-
-  display:flex;
   min-height:100vh;
-
-}
-
-
-
-/* SIDEBAR */
-
-
-.sidebar {
-
-  width:260px;
-  background:#ffffff;
-  padding:25px 15px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-
-}
-
-
-
-.sidebar-logo {
-
-  text-align:center;
-  margin-bottom:30px;
-
-}
-
-
-
-.sidebar-logo img {
-
-  width:80px;
-  height:80px;
-  object-fit:contain;
-
-}
-
-
-
-.sidebar-logo h2 {
-
-  margin:10px 0;
-  color:#1f2937;
-  font-size:20px;
-
-}
-
-
-
-.sidebar a {
-
-  display:block;
-  padding:14px 15px;
-  margin:8px 0;
-  text-decoration:none;
-  color:#374151;
-  border-radius:8px;
-  font-weight:bold;
-
-}
-
-
-
-.sidebar a:hover {
-
-  background:#e5e7eb;
-
-}
-
-
-
-
-/* MAIN CONTENT */
-
-
-.main-content {
-
-  flex:1;
   padding:30px;
 
 }
 
 
+/* HEADER */
 
-/* FORM BOX */
-
-
-.form-box {
+.employee-header {
 
   background:white;
-  padding:35px;
   border-radius:15px;
-  max-width:700px;
+  padding:20px;
+  display:flex;
+  align-items:center;
   box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom:30px;
 
 }
 
 
+.employee-header img {
 
-.form-box h1 {
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  margin-right:25px;
 
-  margin-top:0;
+}
+
+
+.employee-header h1 {
+
+  margin:0;
   color:#1f2937;
+
+}
+
+
+.employee-header p {
+
+  margin-top:8px;
+  color:#6b7280;
 
 }
 
@@ -132,20 +64,40 @@ body {
 /* FORM */
 
 
-.form-group {
+.form-box {
 
-  margin-bottom:20px;
+background:white;
+padding:35px;
+border-radius:15px;
+max-width:700px;
+margin:auto;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+.form-box h2 {
+
+color:#1f2937;
+margin-top:0;
 
 }
 
 
 
+.form-group {
+
+margin-bottom:20px;
+
+}
+
+
 .form-group label {
 
-  display:block;
-  font-weight:bold;
-  color:#374151;
-  margin-bottom:8px;
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+color:#374151;
 
 }
 
@@ -153,146 +105,76 @@ body {
 
 .form-group input {
 
-  width:100%;
-  padding:12px;
-  border:1px solid #d1d5db;
-  border-radius:8px;
-  font-size:15px;
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:8px;
 
 }
 
-
-
-.form-group input:focus {
-
-  outline:none;
-  border-color:#2563eb;
-
-}
-
-
-
-/* BUTTON */
 
 
 .submit-button {
 
-  background:#2563eb;
-  color:white;
-  padding:13px 25px;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+background:#2563eb;
+color:white;
+padding:13px 25px;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
 
 }
-
 
 
 .submit-button:hover {
 
-  background:#1d4ed8;
+background:#1d4ed8;
 
 }
-
-
 
 
 .back-button {
 
-  display:inline-block;
-  margin-top:20px;
-  color:#374151;
-  text-decoration:none;
-  font-weight:bold;
+display:inline-block;
+margin-top:20px;
+text-decoration:none;
+color:#374151;
+font-weight:bold;
 
 }
 
-
-
-
-@media(max-width:800px){
-
-
-.dashboard-container{
-
- flex-direction:column;
-
-}
-
-
-.sidebar{
-
- width:100%;
-
-}
-
-
-}
 
 </style>
 
 
 
 
-
-<div class="dashboard-container">
-
+<div class="employee-page">
 
 
 
-
-<!-- SIDEBAR -->
-
-
-<div class="sidebar">
-
-
-
-<div class="sidebar-logo">
+<div class="employee-header">
 
 
 <%= image_tag "company_logo.png" %>
 
 
-<h2>
-Hjort Knudsen
-</h2>
+<div>
+
+<h1>
+Hjort Knudsen Pvt. Ltd.
+</h1>
+
+<p>
+Employee Portal
+</p>
 
 
 </div>
 
 
-
-<%= link_to "Dashboard", root_path %>
-
-
-<%= link_to "Employees", employees_path %>
-
-
-<%= link_to "Add Employee", new_employee_path %>
-
-
-<%= link_to "Salary Slips", salary_slips_path %>
-
-
-<%= link_to "Create Salary Slip", new_salary_slip_path %>
-
-
-
 </div>
-
-
-
-
-
-
-
-<!-- MAIN CONTENT -->
-
-
-<div class="main-content">
 
 
 
@@ -301,18 +183,13 @@ Hjort Knudsen
 <div class="form-box">
 
 
-
-<h1>
-Add New Employee
-</h1>
-
-
+<h2>
+Add Employee
+</h2>
 
 
 
 <%= form_with model: @employee do |form| %>
-
-
 
 
 
@@ -327,9 +204,6 @@ placeholder:"Enter employee name" %>
 
 
 
-
-
-
 <div class="form-group">
 
 <%= form.label :employee_id, "Employee ID" %>
@@ -338,8 +212,6 @@ placeholder:"Enter employee name" %>
 placeholder:"Enter employee ID" %>
 
 </div>
-
-
 
 
 
@@ -356,8 +228,6 @@ placeholder:"Enter department" %>
 
 
 
-
-
 <div class="form-group">
 
 <%= form.label :email %>
@@ -366,8 +236,6 @@ placeholder:"Enter department" %>
 placeholder:"Enter email address" %>
 
 </div>
-
-
 
 
 
@@ -384,8 +252,6 @@ placeholder:"Create password" %>
 
 
 
-
-
 <div class="form-group">
 
 <%= form.label :joining_date, "Joining Date" %>
@@ -396,19 +262,8 @@ placeholder:"Create password" %>
 
 
 
-
-
-
-<div>
-
-
 <%= form.submit "Add Employee",
 class:"submit-button" %>
-
-
-</div>
-
-
 
 
 
@@ -416,23 +271,14 @@ class:"submit-button" %>
 
 
 
-
-
-<%= link_to "← Back to Employees",
+<%= link_to "← Back",
 employees_path,
 class:"back-button" %>
 
 
 
-
-
 </div>
 
-
-
-
-
-</div>
 
 
 </div>
