@@ -9,13 +9,21 @@
     margin: 30px auto;
     background: white;
     padding: 35px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   }
+
+  /* COMPANY HEADER */
 
   .company-header {
     text-align: center;
     border-bottom: 3px solid #1f2937;
     padding-bottom: 20px;
+  }
+
+  .company-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 8px;
   }
 
   .company-header h1 {
@@ -28,6 +36,8 @@
     margin: 8px 0;
     color: #555;
   }
+
+  /* SALARY SLIP TITLE */
 
   .payslip-title {
     text-align: center;
@@ -42,14 +52,37 @@
     margin: 0;
   }
 
+  /* EMPLOYEE DETAILS */
+
   .employee-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    column-gap: 18px;
+    row-gap: 6px;
     background: #f8fafc;
-    padding: 18px;
+    padding: 10px 14px;
     margin-bottom: 25px;
   }
+
+  .employee-details > div {
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    min-height: 30px;
+  }
+
+  .employee-details strong {
+    width: 120px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .employee-details span {
+    color: #111;
+    font-size: 14px;
+  }
+
+  /* SALARY SECTION */
 
   .salary-section {
     display: grid;
@@ -80,6 +113,8 @@
     background: #f3f4f6;
   }
 
+  /* NET SALARY */
+
   .net-salary {
     margin-top: 25px;
     background: #e5e7eb;
@@ -89,6 +124,8 @@
     font-weight: bold;
   }
 
+  /* FOOTER */
+
   .footer {
     margin-top: 35px;
     text-align: center;
@@ -96,9 +133,29 @@
     font-size: 13px;
   }
 
-  .print-button {
+  /* BUTTONS */
+
+  .action-buttons {
     text-align: center;
     margin: 20px;
+  }
+
+  .back-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-right: 10px;
+  }
+
+  .back-button:hover {
+    background: #4b5563;
+  }
+
+  .print-button {
+    display: inline-block;
   }
 
   .print-button button {
@@ -110,8 +167,43 @@
     cursor: pointer;
   }
 
-  @media print {
+  /* MOBILE */
+
+  @media (max-width: 700px) {
+    .payslip {
+      width: auto;
+      margin: 15px;
+      padding: 20px;
+    }
+
+    .employee-details,
+    .salary-section {
+      grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .back-button {
+      margin-right: 0;
+    }
+
     .print-button {
+      display: block;
+    }
+
+    .print-button button {
+      width: 100%;
+    }
+  }
+
+  /* PRINT */
+
+  @media print {
+    .action-buttons {
       display: none;
     }
 
@@ -129,14 +221,18 @@
 
 <div class="payslip">
 
+  <!-- COMPANY HEADER -->
+
   <div class="company-header">
+
+    <%= image_tag "company_logo.png", class: "company-logo" %>
 
     <h1>Hjort Knudsen Pvt. Ltd.</h1>
 
-    <p>Employee Salary Management System</p>
-
   </div>
 
+
+  <!-- SALARY SLIP TITLE -->
 
   <div class="payslip-title">
 
@@ -145,43 +241,48 @@
   </div>
 
 
+  <!-- EMPLOYEE DETAILS -->
+
   <div class="employee-details">
 
     <div>
       <strong>Employee ID:</strong>
-      <%= @salary_slip.employee.employee_id %>
+      <span><%= @salary_slip.employee.employee_id %></span>
     </div>
 
     <div>
       <strong>Employee Name:</strong>
-      <%= @salary_slip.employee.name %>
+      <span><%= @salary_slip.employee.name %></span>
     </div>
 
     <div>
       <strong>Department:</strong>
-      <%= @salary_slip.employee.department %>
+      <span><%= @salary_slip.employee.department %></span>
     </div>
 
     <div>
       <strong>Email:</strong>
-      <%= @salary_slip.employee.email %>
+      <span><%= @salary_slip.employee.email %></span>
     </div>
 
     <div>
       <strong>Month:</strong>
-      <%= @salary_slip.month %>
+      <span><%= @salary_slip.month %></span>
     </div>
 
     <div>
       <strong>Year:</strong>
-      <%= @salary_slip.year %>
+      <span><%= @salary_slip.year %></span>
     </div>
 
   </div>
 
 
+  <!-- EARNINGS AND DEDUCTIONS -->
+
   <div class="salary-section">
 
+    <!-- EARNINGS -->
 
     <div class="salary-box">
 
@@ -225,6 +326,8 @@
     </div>
 
 
+    <!-- DEDUCTIONS -->
+
     <div class="salary-box">
 
       <h3>Deductions</h3>
@@ -264,6 +367,8 @@
   </div>
 
 
+  <!-- NET SALARY -->
+
   <div class="net-salary">
 
     Net Salary:
@@ -271,6 +376,8 @@
 
   </div>
 
+
+  <!-- FOOTER -->
 
   <div class="footer">
 
@@ -283,10 +390,21 @@
 </div>
 
 
-<div class="print-button">
+<!-- ACTION BUTTONS -->
 
-  <button onclick="window.print()">
-    Print / Save as PDF
-  </button>
+<div class="action-buttons">
+
+  <%= link_to "← Back to Dashboard",
+              employee_dashboard_path,
+              class: "back-button" %>
+
+
+  <div class="print-button">
+
+    <button onclick="window.print()">
+      Print / Save as PDF
+    </button>
+
+  </div>
 
 </div>

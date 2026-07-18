@@ -1,0 +1,416 @@
+<style>
+  body {
+    background: #f4f6f9;
+    font-family: Arial, sans-serif;
+  }
+
+  .employee-dashboard {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px 30px;
+  }
+
+  /* EMPLOYEE HEADER */
+
+  .employee-header {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+  }
+
+  /* TOP HEADER */
+
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  /* WELCOME SECTION */
+
+  .welcome-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .company-logo {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+  }
+
+  .welcome-section h1 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 36px;
+  }
+
+  .wave {
+    font-size: 34px;
+  }
+
+  /* LOGOUT BUTTON */
+
+  .logout-button {
+    background: #ef4444;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  .logout-button:hover {
+    background: #dc2626;
+  }
+
+  /* EMPLOYEE DETAILS */
+
+  .employee-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .info-box {
+    background: #f8fafc;
+    padding: 16px 18px;
+    border-radius: 12px;
+  }
+
+  .info-box strong {
+    display: block;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .info-box span {
+    color: #111827;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* SALARY SECTION */
+
+  .year-section {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* YEAR + MONTH + SALARY SLIP */
+
+  .salary-slip-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+
+  .salary-slip-row:last-child {
+    margin-bottom: 0;
+  }
+
+  /* YEAR BLOCK */
+
+  .year-block {
+    min-width: 100px;
+    padding: 18px 25px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2937;
+  }
+
+  /* MONTH BLOCK */
+
+  .month-block {
+    min-width: 180px;
+    padding: 18px 25px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f2937;
+  }
+
+  /* VIEW SALARY SLIP */
+
+  .view-slip-block {
+    min-width: 220px;
+    padding: 18px 25px;
+    background: #dbeafe;
+    border-radius: 14px;
+    text-align: center;
+    color: #2563eb;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  .view-slip-block:hover {
+    background: #bfdbfe;
+  }
+
+  /* NO SALARY SLIPS MESSAGE */
+
+  .no-salary-slips {
+    background: white;
+    padding: 40px 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    color: #6b7280;
+    font-size: 18px;
+  }
+
+  /* MOBILE */
+
+  @media (max-width: 700px) {
+
+    .top-header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+    }
+
+    .logout-button {
+      text-align: center;
+    }
+
+    .welcome-section {
+      flex-wrap: wrap;
+    }
+
+    .welcome-section h1 {
+      font-size: 28px;
+    }
+
+    .employee-info {
+      grid-template-columns: 1fr;
+    }
+
+    .salary-slip-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .year-block,
+    .month-block,
+    .view-slip-block {
+      width: auto;
+      min-width: auto;
+    }
+
+  }
+</style>
+
+
+<div class="employee-dashboard">
+
+
+  <!-- EMPLOYEE HEADER -->
+
+  <div class="employee-header">
+
+
+    <!-- TOP HEADER -->
+
+    <div class="top-header">
+
+
+      <!-- LOGO + WELCOME + HAND -->
+
+      <div class="welcome-section">
+
+
+        <%= image_tag "company_logo.png", class: "company-logo" %>
+
+
+        <h1>
+          Welcome, <%= @employee.name %>
+        </h1>
+
+
+        <span class="wave">
+          👋
+        </span>
+
+
+      </div>
+
+
+      <!-- LOGOUT BUTTON -->
+
+      <%= button_to "Logout",
+                    employee_logout_path,
+                    method: :delete,
+                    class: "logout-button" %>
+
+
+    </div>
+
+
+    <!-- EMPLOYEE DETAILS -->
+
+    <div class="employee-info">
+
+
+      <div class="info-box">
+
+        <strong>Employee ID</strong>
+
+        <span>
+          <%= @employee.employee_id %>
+        </span>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <strong>Employee Name</strong>
+
+        <span>
+          <%= @employee.name %>
+        </span>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <strong>Department</strong>
+
+        <span>
+          <%= @employee.department %>
+        </span>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <strong>Email</strong>
+
+        <span>
+          <%= @employee.email %>
+        </span>
+
+      </div>
+
+
+      <div class="info-box">
+
+        <strong>Joining Date</strong>
+
+        <span>
+
+          <% if @employee.joining_date.present? %>
+
+            <%= @employee.joining_date.strftime("%d %B %Y") %>
+
+          <% else %>
+
+            Not Available
+
+          <% end %>
+
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- SALARY SLIPS -->
+
+  <% if @salary_slips.any? %>
+
+
+    <% @salary_slips.group_by(&:year).each do |year, salary_slips| %>
+
+
+      <div class="year-section">
+
+
+        <% salary_slips.each do |salary_slip| %>
+
+
+          <div class="salary-slip-row">
+
+
+            <!-- YEAR BLOCK -->
+
+            <div class="year-block">
+
+              <%= year %>
+
+            </div>
+
+
+            <!-- MONTH BLOCK -->
+
+            <div class="month-block">
+
+              <%= salary_slip.month %>
+
+            </div>
+
+
+            <!-- VIEW SALARY SLIP BLOCK -->
+
+            <%= link_to salary_slip_path(salary_slip),
+                        class: "view-slip-block" do %>
+
+              View Salary Slip
+
+            <% end %>
+
+
+          </div>
+
+
+        <% end %>
+
+
+      </div>
+
+
+    <% end %>
+
+
+  <% else %>
+
+
+    <!-- NO SALARY SLIPS -->
+
+    <div class="no-salary-slips">
+
+      No salary slips available yet.
+
+    </div>
+
+
+  <% end %>
+
+
+</div>

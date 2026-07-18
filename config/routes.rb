@@ -1,22 +1,59 @@
 Rails.application.routes.draw do
-  get "dashboard/index"
-  get "salary_slips/index"
-  get "salary_slips/new"
-  get "salary_slips/create"
-  get "employees/index"
-  resources :employees, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :salary_slips, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  root "dashboard#index"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # =========================
+  # Admin Login
+  # =========================
+
+  get    "admin/login",  to: "admin#login"
+  post   "admin/login",  to: "admin#login"
+  delete "admin/logout", to: "admin#logout"
+
+
+  # =========================
+  # Employee Portal
+  # =========================
+
+  get  "employee/login",     to: "employee_portal#login"
+  post "employee/login",     to: "employee_portal#login"
+  get  "employee/dashboard", to: "employee_portal#dashboard"
+
+  # Employee Logout
+
+  delete "employee/logout",  to: "employee_portal#logout"
+
+
+  # =========================
+  # Main Dashboard
+  # =========================
+
+  get "dashboard/index"
+
+
+  # =========================
+  # Employees
+  # =========================
+
+  resources :employees, only: [:index, :new, :create, :edit, :update, :destroy]
+
+
+  # =========================
+  # Salary Slips
+  # =========================
+
+  resources :salary_slips, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+
+
+  # =========================
+  # Root
+  # =========================
+
+  root "dashboard#index"
+
+
+  # =========================
+  # Health Check
+  # =========================
+
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

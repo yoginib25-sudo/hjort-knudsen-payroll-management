@@ -1,227 +1,698 @@
 <style>
-  * {
-    box-sizing: border-box;
-  }
 
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  .dashboard-container {
-    display: flex;
-    min-height: 100vh;
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
 
-  .sidebar {
-    width: 240px;
-    background: #1f2937;
-    color: white;
-    padding: 25px 15px;
-  }
 
-  .sidebar h2 {
-    text-align: center;
-    margin-bottom: 40px;
-  }
+/* MAIN LAYOUT */
 
-  .sidebar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 14px 15px;
-    margin: 8px 0;
-    border-radius: 6px;
-  }
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
 
-  .sidebar a:hover {
-    background: #374151;
-  }
 
-  .main-content {
-    flex: 1;
-    padding: 30px;
-  }
+/* SIDEBAR */
 
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
+.sidebar {
 
-  .topbar h1 {
-    margin: 0;
-    color: #1f2937;
-  }
+  width: 260px;
+  background: #1f2937;
+  color: white;
+  padding: 25px 15px;
 
-  .welcome {
-    color: #6b7280;
-  }
+}
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
 
-  .card {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
+/* LOGO SECTION */
 
-  .card h3 {
-    margin: 0;
-    color: #6b7280;
-    font-size: 16px;
-  }
+.sidebar-logo {
 
-  .card .number {
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 15px;
-    color: #111827;
-  }
+  text-align:center;
+  margin-bottom:30px;
 
-  .quick-actions {
-    margin-top: 35px;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-  }
+}
 
-  .quick-actions h2 {
-    margin-top: 0;
-  }
 
-  .action-buttons {
-    display: flex;
-    gap: 15px;
-  }
+.logo-box {
 
-  .action-buttons a {
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    background: #2563eb;
-    color: white;
-  }
+  background:white;
+  width:100px;
+  height:100px;
+  margin:auto;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  .action-buttons a:hover {
-    background: #1d4ed8;
-  }
+}
 
-  @media (max-width: 800px) {
-    .sidebar {
-      width: 180px;
-    }
 
-    .cards {
-      grid-template-columns: 1fr;
-    }
+.logo-box img {
 
-    .action-buttons {
-      flex-direction: column;
-    }
-  }
+  width:80px;
+  height:80px;
+  object-fit:contain;
+
+}
+
+
+.sidebar-logo h2 {
+
+  margin-top:15px;
+  font-size:18px;
+  color:white;
+
+}
+
+
+
+.sidebar a {
+
+  display:block;
+  color:white;
+  text-decoration:none;
+  padding:14px 15px;
+  margin:8px 0;
+  border-radius:8px;
+
+}
+
+
+.sidebar a:hover {
+
+  background:#374151;
+
+}
+
+
+
+/* MAIN CONTENT */
+
+.main-content {
+
+  flex:1;
+  padding:30px;
+
+}
+
+
+
+/* TOP BAR */
+
+.topbar {
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+
+}
+
+
+.topbar h1 {
+
+  margin:0;
+  color:#1f2937;
+
+}
+
+
+.welcome {
+
+  color:#6b7280;
+
+}
+
+
+
+.admin-section {
+
+  text-align:right;
+
+}
+
+
+.admin-section strong {
+
+  color:#1f2937;
+  font-size:18px;
+
+}
+
+
+
+/* LOGOUT */
+
+.admin-logout {
+
+  background:#ef4444;
+  color:white;
+  padding:10px 20px;
+  border-radius:8px;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+
+}
+
+
+.admin-logout:hover {
+
+  background:#dc2626;
+
+}
+
+
+
+
+/* DASHBOARD CARDS */
+
+.cards {
+
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:20px;
+
+}
+
+
+
+.card {
+
+ background:white;
+ padding:25px;
+ border-radius:15px;
+ box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+.card-title {
+
+ color:#6b7280;
+ font-size:15px;
+
+}
+
+
+.card-number {
+
+ margin-top:15px;
+ font-size:32px;
+ font-weight:bold;
+ color:#111827;
+
+}
+
+
+
+
+/* BOX SECTION */
+
+.dashboard-box {
+
+ margin-top:30px;
+ background:white;
+ padding:25px;
+ border-radius:15px;
+ box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+.dashboard-box h2 {
+
+ margin-top:0;
+ color:#1f2937;
+
+}
+
+
+
+
+
+/* BUTTONS */
+
+.action-buttons {
+
+ display:flex;
+ gap:15px;
+
+}
+
+
+
+.action-buttons a {
+
+ background:#2563eb;
+ color:white;
+ padding:12px 20px;
+ border-radius:8px;
+ text-decoration:none;
+
+}
+
+
+.action-buttons a:hover {
+
+ background:#1d4ed8;
+
+}
+
+
+
+
+/* TABLE */
+
+table {
+
+ width:100%;
+ border-collapse:collapse;
+
+}
+
+
+table th {
+
+ background:#f8fafc;
+ padding:12px;
+ text-align:left;
+ color:#374151;
+
+}
+
+
+table td {
+
+ padding:12px;
+ border-bottom:1px solid #eeeeee;
+ color:#4b5563;
+
+}
+
+
+table tr:hover {
+
+ background:#f9fafb;
+
+}
+
+
+
+
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+
+.sidebar {
+
+ width:180px;
+
+}
+
+
+.cards {
+
+ grid-template-columns:1fr;
+
+}
+
+
+.topbar {
+
+ flex-direction:column;
+ align-items:flex-start;
+ gap:20px;
+
+}
+
+
+.action-buttons {
+
+ flex-direction:column;
+
+}
+
+
+}
+
 </style>
+
+
+
+
 
 <div class="dashboard-container">
 
-  <div class="sidebar">
-
-    <h2>Payroll System</h2>
-
-    <%= link_to "Dashboard", root_path %>
-
-    <%= link_to "Employees", employees_path %>
-
-    <%= link_to "Add Employee", new_employee_path %>
-
-    <%= link_to "Salary Slips", salary_slips_path %>
-
-    <%= link_to "Create Salary Slip", new_salary_slip_path %>
-
-  </div>
 
 
-  <div class="main-content">
-
-    <div class="topbar">
-
-      <div>
-        <h1>Dashboard</h1>
-        <p class="welcome">
-          Welcome to Employee Salary Management System
-        </p>
-      </div>
-
-      <div>
-        <strong>Admin</strong>
-      </div>
-
-    </div>
+<!-- SIDEBAR -->
 
 
-    <div class="cards">
-
-      <div class="card">
-
-        <h3>Total Employees</h3>
-
-        <div class="number">
-          <%= Employee.count %>
-        </div>
-
-      </div>
+<div class="sidebar">
 
 
-      <div class="card">
-
-        <h3>Total Salary Slips</h3>
-
-        <div class="number">
-          <%= SalarySlip.count %>
-        </div>
-
-      </div>
+<div class="sidebar-logo">
 
 
-      <div class="card">
+<div class="logo-box">
 
-        <h3>Total Payroll</h3>
+<%= image_tag "company_logo.png" %>
 
-        <div class="number">
-          ₹ <%= SalarySlip.sum(:net_salary) %>
-        </div>
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="quick-actions">
+<h2>
+Hjort Knudsen Pvt. Ltd.
+</h2>
 
-      <h2>Quick Actions</h2>
 
-      <div class="action-buttons">
+</div>
 
-        <%= link_to "Add New Employee",
-            new_employee_path %>
 
-        <%= link_to "Create Salary Slip",
-            new_salary_slip_path %>
 
-        <%= link_to "View Salary Slips",
-            salary_slips_path %>
 
-      </div>
+<%= link_to "Dashboard", root_path %>
 
-    </div>
 
-  </div>
+<%= link_to "Employees", employees_path %>
+
+
+<%= link_to "Add Employee", new_employee_path %>
+
+
+<%= link_to "Salary Slips", salary_slips_path %>
+
+
+<%= link_to "Create Salary Slip", new_salary_slip_path %>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+
+<div class="main-content">
+
+
+
+<div class="topbar">
+
+
+<div>
+
+
+<h1>
+Dashboard
+</h1>
+
+
+
+
+
+</div>
+
+
+
+
+<div class="admin-section">
+
+
+<strong>
+Admin
+</strong>
+
+
+<br>
+
+
+<%= button_to "Logout",
+admin_logout_path,
+method: :delete,
+class:"admin-logout" %>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- CARDS -->
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="card-title">
+Total Employees
+</div>
+
+
+<div class="card-number">
+<%= @total_employees %>
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="card-title">
+Total Salary Slips
+</div>
+
+
+<div class="card-number">
+<%= @total_salary_slips %>
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="card-title">
+Total Payroll
+</div>
+
+
+<div class="card-number">
+₹ <%= @total_payroll %>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- QUICK ACTION -->
+
+
+<div class="dashboard-box">
+
+
+<h2>
+Quick Actions
+</h2>
+
+
+<div class="action-buttons">
+
+
+<%= link_to "Add New Employee",
+new_employee_path %>
+
+
+<%= link_to "Create Salary Slip",
+new_salary_slip_path %>
+
+
+<%= link_to "View Salary Slips",
+salary_slips_path %>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- RECENT EMPLOYEES -->
+
+
+<div class="dashboard-box">
+
+
+<h2>
+Recent Employees
+</h2>
+
+
+
+<table>
+
+
+<tr>
+
+<th>Name</th>
+<th>Employee ID</th>
+<th>Department</th>
+
+</tr>
+
+
+
+<% @recent_employees.each do |employee| %>
+
+
+<tr>
+
+
+<td>
+<%= employee.name %>
+</td>
+
+
+<td>
+<%= employee.employee_id %>
+</td>
+
+
+<td>
+<%= employee.department %>
+</td>
+
+
+</tr>
+
+
+<% end %>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- RECENT SALARY SLIPS -->
+
+
+<div class="dashboard-box">
+
+
+<h2>
+Recent Salary Slips
+</h2>
+
+
+
+<table>
+
+
+<tr>
+
+<th>Employee</th>
+<th>Month</th>
+<th>Year</th>
+<th>Net Salary</th>
+
+</tr>
+
+
+
+<% @recent_salary_slips.each do |salary_slip| %>
+
+
+<tr>
+
+
+<td>
+<%= salary_slip.employee.name %>
+</td>
+
+
+<td>
+<%= salary_slip.month %>
+</td>
+
+
+<td>
+<%= salary_slip.year %>
+</td>
+
+
+<td>
+₹ <%= salary_slip.net_salary %>
+</td>
+
+
+</tr>
+
+
+<% end %>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+</div>
 
 </div>

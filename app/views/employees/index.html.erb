@@ -1,152 +1,581 @@
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-  }
 
-  .employees-page {
-    width: 90%;
-    margin: 40px auto;
-  }
+* {
+  box-sizing:border-box;
+}
 
-  .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
-  .page-header h1 {
-    color: #1f2937;
-  }
+body {
 
-  .add-button {
-    background: #2563eb;
-    color: white;
-    padding: 10px 18px;
-    text-decoration: none;
-    border-radius: 6px;
-  }
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f9;
 
-  .search-box {
-    background: white;
-    padding: 20px;
-    margin: 25px 0;
-    border-radius: 8px;
-  }
+}
 
-  .search-box input {
-    padding: 10px;
-    width: 350px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
 
-  .search-box input[type="submit"] {
-    width: auto;
-    background: #2563eb;
-    color: white;
-    cursor: pointer;
-  }
+/* MAIN LAYOUT */
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-  }
+.dashboard-container {
 
-  th {
-    background: #1f2937;
-    color: white;
-    padding: 14px;
-    text-align: left;
-  }
+  display:flex;
+  min-height:100vh;
 
-  td {
-    padding: 14px;
-    border-bottom: 1px solid #ddd;
-  }
+}
 
-  .action-link {
-    margin-right: 10px;
-  }
+
+
+/* SIDEBAR */
+
+.sidebar {
+
+  width:260px;
+  background:#ffffff;
+  padding:25px 15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+.sidebar-logo {
+
+  text-align:center;
+  margin-bottom:30px;
+
+}
+
+
+.sidebar-logo img {
+
+  width:80px;
+  height:80px;
+  object-fit:contain;
+
+}
+
+
+.sidebar-logo h2 {
+
+  margin:10px 0;
+  color:#1f2937;
+  font-size:20px;
+
+}
+
+
+
+.sidebar a {
+
+  display:block;
+  padding:14px 15px;
+  margin:8px 0;
+  text-decoration:none;
+  color:#374151;
+  border-radius:8px;
+  font-weight:bold;
+
+}
+
+
+
+.sidebar a:hover {
+
+  background:#e5e7eb;
+
+}
+
+
+
+/* MAIN CONTENT */
+
+.main-content {
+
+  flex:1;
+  padding:30px;
+
+}
+
+
+
+/* HEADER */
+
+.page-header {
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+
+}
+
+
+
+.page-header h1 {
+
+  margin:0;
+  color:#1f2937;
+
+}
+
+
+.employee-count {
+
+  color:#6b7280;
+
+}
+
+
+
+.add-button {
+
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+
+}
+
+
+.add-button:hover {
+
+  background:#1d4ed8;
+
+}
+
+
+
+/* SEARCH */
+
+
+.search-box {
+
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom:30px;
+
+}
+
+
+
+.search-box input[type="text"] {
+
+  width:400px;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:8px;
+
+}
+
+
+
+.search-box input[type="submit"] {
+
+  padding:12px 22px;
+  margin-left:10px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+
+}
+
+
+
+/* TABLE */
+
+.table-box {
+
+ background:white;
+ padding:20px;
+ border-radius:15px;
+ box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+table {
+
+ width:100%;
+ border-collapse:collapse;
+
+}
+
+
+
+th {
+
+ background:#1f2937;
+ color:white;
+ padding:14px;
+ text-align:left;
+
+}
+
+
+
+td {
+
+ padding:14px;
+ border-bottom:1px solid #eee;
+ color:#374151;
+
+}
+
+
+
+tr:hover {
+
+ background:#f9fafb;
+
+}
+
+
+
+
+/* ACTIONS */
+
+
+.edit-btn {
+
+ color:#2563eb;
+ text-decoration:none;
+ font-weight:bold;
+ margin-right:15px;
+
+}
+
+
+
+.delete-btn {
+
+ color:#dc2626;
+ text-decoration:none;
+ font-weight:bold;
+
+}
+
+
+
+/* EMPTY */
+
+.no-data {
+
+ text-align:center;
+ padding:30px;
+ color:#6b7280;
+
+}
+
+
+
+
+@media(max-width:800px){
+
+
+.dashboard-container{
+
+ flex-direction:column;
+
+}
+
+
+.sidebar{
+
+ width:100%;
+
+}
+
+
+.page-header{
+
+ flex-direction:column;
+ gap:20px;
+
+}
+
+
+.search-box input[type="text"]{
+
+ width:100%;
+
+}
+
+
+}
+
 </style>
 
-<div class="employees-page">
-
-  <div class="page-header">
-
-    <h1>Employees</h1>
-
-    <%= link_to "＋ Add Employee",
-        new_employee_path,
-        class: "add-button" %>
-
-  </div>
 
 
-  <div class="search-box">
-
-    <%= form_with url: employees_path,
-        method: :get,
-        local: true do |form| %>
-
-      <%= form.text_field :search,
-          value: params[:search],
-          placeholder: "Search by name, employee ID, department or email" %>
-
-      <%= form.submit "Search" %>
-
-    <% end %>
-
-  </div>
 
 
-  <table>
-
-    <tr>
-      <th>Name</th>
-      <th>Employee ID</th>
-      <th>Department</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
+<div class="dashboard-container">
 
 
-    <% @employees.each do |employee| %>
 
-      <tr>
+<!-- SIDEBAR -->
 
-        <td><%= employee.name %></td>
 
-        <td><%= employee.employee_id %></td>
+<div class="sidebar">
 
-        <td><%= employee.department %></td>
 
-        <td><%= employee.email %></td>
+<div class="sidebar-logo">
 
-        <td>
 
-          <%= link_to "Edit",
-              edit_employee_path(employee),
-              class: "action-link" %>
+<%= image_tag "company_logo.png" %>
 
-          <%= link_to "Delete",
-              employee_path(employee),
-              data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              } %>
 
-        </td>
+<h2>
+Hjort Knudsen
+</h2>
 
-      </tr>
 
-    <% end %>
+</div>
 
-  </table>
 
-  <br>
 
-  <%= link_to "← Back to Dashboard", root_path %>
+<%= link_to "Dashboard", root_path %>
+
+
+<%= link_to "Employees", employees_path %>
+
+
+<%= link_to "Add Employee", new_employee_path %>
+
+
+<%= link_to "Salary Slips", salary_slips_path %>
+
+
+<%= link_to "Create Salary Slip", new_salary_slip_path %>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+
+<div class="main-content">
+
+
+
+
+
+<div class="page-header">
+
+
+<div>
+
+
+<h1>
+Employees
+</h1>
+
+
+<p class="employee-count">
+
+Total Employees:
+<strong>
+<%= @employees.count %>
+</strong>
+
+</p>
+
+
+</div>
+
+
+
+
+<%= link_to "＋ Add Employee",
+new_employee_path,
+class:"add-button" %>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- SEARCH -->
+
+
+<div class="search-box">
+
+
+<%= form_with url: employees_path,
+method: :get,
+local:true do |form| %>
+
+
+<%= form.text_field :search,
+value: params[:search],
+placeholder:"Search name, employee ID, department or email" %>
+
+
+<%= form.submit "Search" %>
+
+
+<% end %>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- TABLE -->
+
+
+<div class="table-box">
+
+
+<table>
+
+
+
+<tr>
+
+<th>Employee ID</th>
+
+<th>Name</th>
+
+<th>Department</th>
+
+<th>Email</th>
+
+<th>Joining Date</th>
+
+<th>Actions</th>
+
+
+</tr>
+
+
+
+
+
+<% if @employees.any? %>
+
+
+<% @employees.each do |employee| %>
+
+
+<tr>
+
+
+<td>
+<%= employee.employee_id %>
+</td>
+
+
+<td>
+<%= employee.name %>
+</td>
+
+
+<td>
+<%= employee.department %>
+</td>
+
+
+<td>
+<%= employee.email %>
+</td>
+
+
+
+<td>
+
+<% if employee.joining_date.present? %>
+
+<%= employee.joining_date.strftime("%d %B %Y") %>
+
+<% else %>
+
+Not Available
+
+<% end %>
+
+</td>
+
+
+
+<td>
+
+
+<%= link_to "Edit",
+edit_employee_path(employee),
+class:"edit-btn" %>
+
+
+
+<%= link_to "Delete",
+employee_path(employee),
+class:"delete-btn",
+data:{
+turbo_method: :delete,
+turbo_confirm:"Are you sure you want to delete this employee?"
+} %>
+
+
+
+</td>
+
+
+</tr>
+
+
+<% end %>
+
+
+<% else %>
+
+
+<tr>
+
+<td colspan="6" class="no-data">
+
+No employees found
+
+</td>
+
+</tr>
+
+
+<% end %>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+</div>
+
 
 </div>

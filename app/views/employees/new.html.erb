@@ -1,35 +1,438 @@
-<h1>Add New Employee</h1>
+<style>
+
+* {
+  box-sizing:border-box;
+}
+
+
+body {
+
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f9;
+
+}
+
+
+
+/* MAIN LAYOUT */
+
+
+.dashboard-container {
+
+  display:flex;
+  min-height:100vh;
+
+}
+
+
+
+/* SIDEBAR */
+
+
+.sidebar {
+
+  width:260px;
+  background:#ffffff;
+  padding:25px 15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+.sidebar-logo {
+
+  text-align:center;
+  margin-bottom:30px;
+
+}
+
+
+
+.sidebar-logo img {
+
+  width:80px;
+  height:80px;
+  object-fit:contain;
+
+}
+
+
+
+.sidebar-logo h2 {
+
+  margin:10px 0;
+  color:#1f2937;
+  font-size:20px;
+
+}
+
+
+
+.sidebar a {
+
+  display:block;
+  padding:14px 15px;
+  margin:8px 0;
+  text-decoration:none;
+  color:#374151;
+  border-radius:8px;
+  font-weight:bold;
+
+}
+
+
+
+.sidebar a:hover {
+
+  background:#e5e7eb;
+
+}
+
+
+
+
+/* MAIN CONTENT */
+
+
+.main-content {
+
+  flex:1;
+  padding:30px;
+
+}
+
+
+
+/* FORM BOX */
+
+
+.form-box {
+
+  background:white;
+  padding:35px;
+  border-radius:15px;
+  max-width:700px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+.form-box h1 {
+
+  margin-top:0;
+  color:#1f2937;
+
+}
+
+
+
+/* FORM */
+
+
+.form-group {
+
+  margin-bottom:20px;
+
+}
+
+
+
+.form-group label {
+
+  display:block;
+  font-weight:bold;
+  color:#374151;
+  margin-bottom:8px;
+
+}
+
+
+
+.form-group input {
+
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:15px;
+
+}
+
+
+
+.form-group input:focus {
+
+  outline:none;
+  border-color:#2563eb;
+
+}
+
+
+
+/* BUTTON */
+
+
+.submit-button {
+
+  background:#2563eb;
+  color:white;
+  padding:13px 25px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+
+}
+
+
+
+.submit-button:hover {
+
+  background:#1d4ed8;
+
+}
+
+
+
+
+.back-button {
+
+  display:inline-block;
+  margin-top:20px;
+  color:#374151;
+  text-decoration:none;
+  font-weight:bold;
+
+}
+
+
+
+
+@media(max-width:800px){
+
+
+.dashboard-container{
+
+ flex-direction:column;
+
+}
+
+
+.sidebar{
+
+ width:100%;
+
+}
+
+
+}
+
+</style>
+
+
+
+
+
+<div class="dashboard-container">
+
+
+
+
+
+<!-- SIDEBAR -->
+
+
+<div class="sidebar">
+
+
+
+<div class="sidebar-logo">
+
+
+<%= image_tag "company_logo.png" %>
+
+
+<h2>
+Hjort Knudsen
+</h2>
+
+
+</div>
+
+
+
+<%= link_to "Dashboard", root_path %>
+
+
+<%= link_to "Employees", employees_path %>
+
+
+<%= link_to "Add Employee", new_employee_path %>
+
+
+<%= link_to "Salary Slips", salary_slips_path %>
+
+
+<%= link_to "Create Salary Slip", new_salary_slip_path %>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+
+<div class="main-content">
+
+
+
+
+
+<div class="form-box">
+
+
+
+<h1>
+Add New Employee
+</h1>
+
+
+
+
 
 <%= form_with model: @employee do |form| %>
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </div>
 
-  <br>
 
-  <div>
-    <%= form.label :employee_id, "Employee ID" %><br>
-    <%= form.text_field :employee_id %>
-  </div>
 
-  <br>
 
-  <div>
-    <%= form.label :department %><br>
-    <%= form.text_field :department %>
-  </div>
 
-  <br>
+<div class="form-group">
 
-  <div>
-    <%= form.label :email %><br>
-    <%= form.email_field :email %>
-  </div>
+<%= form.label :name, "Employee Name" %>
 
-  <br>
+<%= form.text_field :name,
+placeholder:"Enter employee name" %>
 
-  <div>
-    <%= form.submit "Add Employee" %>
-  </div>
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+<%= form.label :employee_id, "Employee ID" %>
+
+<%= form.text_field :employee_id,
+placeholder:"Enter employee ID" %>
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+<%= form.label :department %>
+
+<%= form.text_field :department,
+placeholder:"Enter department" %>
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+<%= form.label :email %>
+
+<%= form.email_field :email,
+placeholder:"Enter email address" %>
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+<%= form.label :password %>
+
+<%= form.password_field :password,
+placeholder:"Create password" %>
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+<%= form.label :joining_date, "Joining Date" %>
+
+<%= form.date_field :joining_date %>
+
+</div>
+
+
+
+
+
+
+<div>
+
+
+<%= form.submit "Add Employee",
+class:"submit-button" %>
+
+
+</div>
+
+
+
+
+
 <% end %>
+
+
+
+
+
+<%= link_to "← Back to Employees",
+employees_path,
+class:"back-button" %>
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
