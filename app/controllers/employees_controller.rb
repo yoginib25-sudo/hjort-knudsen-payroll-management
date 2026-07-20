@@ -17,12 +17,13 @@ class EmployeesController < ApplicationController
 
 
       @employees = Employee.where(
-        "name LIKE ? OR employee_id LIKE ? OR department LIKE ? OR email LIKE ?",
-        search_term,
-        search_term,
-        search_term,
-        search_term
-      )
+  "name LIKE ? OR employee_id LIKE ? OR department LIKE ? OR designation LIKE ? OR email LIKE ?",
+  search_term,
+  search_term,
+  search_term,
+  search_term,
+  search_term
+)
 
     else
 
@@ -174,12 +175,13 @@ class EmployeesController < ApplicationController
       :name,
       :employee_id,
       :department,
+      :designation,
       :email,
       :password,
       :joining_date
     )
 
-  end
+end
 
 
 

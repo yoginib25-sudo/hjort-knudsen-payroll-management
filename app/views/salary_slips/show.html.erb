@@ -261,6 +261,11 @@
     </div>
 
     <div>
+      <strong>Designation:</strong>
+      <span><%= @salary_slip.employee.designation %></span>
+    </div>
+
+    <div>
       <strong>Email:</strong>
       <span><%= @salary_slip.employee.email %></span>
     </div>
@@ -396,18 +401,17 @@
 
   <% if session[:employee_id].present? %>
 
-  <%= link_to "← Back to Dashboard",
-              employee_dashboard_path,
-              class: "back-button" %>
+    <%= link_to "← Back to Dashboard",
+                employee_dashboard_path,
+                class: "back-button" %>
 
-<% else %>
+  <% else %>
 
-  <%= link_to "← Back to Employees",
-              employees_path,
-              class: "back-button" %>
+    <%= link_to "← Back to Salary Slips",
+                salary_slips_path,
+                class: "back-button" %>
 
-<% end %>
-
+  <% end %>
 
   <div class="print-button">
 

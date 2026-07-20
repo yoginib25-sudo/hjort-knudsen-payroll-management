@@ -425,8 +425,7 @@ local:true do |form| %>
 
 <%= form.text_field :search,
 value: params[:search],
-placeholder:"Search name, employee ID, department or email" %>
-
+placeholder:"Search name, employee ID, department, designation or email"%>
 
 <%= form.submit "Search" %>
 
@@ -460,6 +459,8 @@ placeholder:"Search name, employee ID, department or email" %>
 <th>Name</th>
 
 <th>Department</th>
+
+<th>Designation</th>
 
 <th>Email</th>
 
@@ -497,6 +498,9 @@ placeholder:"Search name, employee ID, department or email" %>
 <%= employee.department %>
 </td>
 
+<td>
+<%= employee.designation %>
+</td>
 
 <td>
 <%= employee.email %>
@@ -553,7 +557,7 @@ turbo_confirm:"Are you sure you want to delete this employee?"
 
 <tr>
 
-<td colspan="6" class="no-data">
+<td colspan="7" class="no-data">
 
 No employees found
 
